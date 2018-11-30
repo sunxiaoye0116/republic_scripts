@@ -1,0 +1,10 @@
+<configuration>
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://[INTERNAL_NETWORK_PREFIX].50.136:9000/</value>
+    </property>
+    <property>
+        <name>hadoop.tmp.dir</name>
+        <value>/home/[SERVER_USERNAME]/github/hadoop-2.7.4/./tmp</value>
+    </property>
+</configuration>

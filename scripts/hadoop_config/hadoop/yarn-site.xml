@@ -1,0 +1,100 @@
+<configuration>
+    <property>
+        <name>yarn.nodemanager.aux-services</name>
+        <value>mapreduce_shuffle</value>
+    </property>
+    <property>
+        <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+        <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+    </property>
+    <property>
+        <name>yarn.resourcemanager.address</name>
+        <value>[INTERNAL_NETWORK_PREFIX].50.136:11032</value>
+        <description>ResourceManager host:port for clients to submit jobs.</description>
+    </property>
+    <property>
+        <name>yarn.resourcemanager.scheduler.address</name>
+        <value>[INTERNAL_NETWORK_PREFIX].50.136:11030</value>
+        <description>ResourceManager host:port for ApplicationMasters to talk to Scheduler to obtain resources.
+        </description>
+    </property>
+    <property>
+        <name>yarn.resourcemanager.resource-tracker.address</name>
+        <value>[INTERNAL_NETWORK_PREFIX].50.136:11031</value>
+        <description>ResourceManager host:port for NodeManagers.</description>
+    </property>
+    <property>
+        <name>yarn.resourcemanager.admin.address</name>
+        <value>[INTERNAL_NETWORK_PREFIX].50.136:11033</value>
+        <description>ResourceManager host:port for administrative commands.</description>
+    </property>
+    <property>
+        <name>yarn.resourcemanager.webapp.address</name>
+        <value>[RESEARCH_NETWORK_PREFIX].136:11088</value>
+        <description>ResourceManager web-ui host:port.</description>
+    </property>
+    <property>
+        <name>mapreduce.jobhistory.address</name>
+        <value>[INTERNAL_NETWORK_PREFIX].50.136:10020</value>
+        <description>MapReduce JobHistory Server host:port</description>
+    </property>
+    <property>
+        <name>mapreduce.jobhistory.webapp.address</name>
+        <value>[RESEARCH_NETWORK_PREFIX].136:19888</value>
+        <description>MapReduce JobHistory Server Web UI host:port</description>
+    </property>
+    <property>
+        <name>yarn.log.server.url</name>
+        <value>http://[RESEARCH_NETWORK_PREFIX].136:19888/jobhistory/logs</value>
+    </property>
+    <property>
+        <name>yarn.log-aggregation-enable</name>
+        <value>true</value>
+    </property>
+    <property>
+        <name>yarn.scheduler.minimum-allocation-mb</name>
+        <value>1024</value>
+        <description>minimum limit of memory to allocate to each container requestat the Resource Manager</description>
+    </property>
+    <property>
+        <name>yarn.scheduler.minimum-allocation-vcores</name>
+        <value>1</value>
+    </property>
+    <property>
+        <name>yarn.scheduler.maximum-allocation-vcores</name>
+        <value>160</value>
+    </property>
+    <property>
+        <name>yarn.scheduler.maximum-allocation-mb</name>
+        <value>1638400</value>
+    </property>
+    <property>
+        <name>yarn.nodemanager.resource.memory-mb</name>
+        <value>102400</value>
+    </property>
+    <property>
+        <name>yarn.nodemanager.resource.cpu-vcores</name>
+        <value>4</value>
+    </property>
+    <property>
+        <name>yarn.nodemanager.vmem-check-enabled</name>
+        <value>false</value>
+    </property>
+    <property>
+        <name>yarn.nodemanager.pmem-check-enabled</name>
+        <value>false</value>
+    </property>
+    <property>
+        <name>yarn.resourcemanager.scheduler.class</name>
+        <value>org.apache.hadoop.yarn.server.resourcemanager.scheduler.capacity.CapacityScheduler</value>
+    </property>
+    <property>
+        <name>yarn.resourcemanager.am.max-attempts</name>
+        <value>1</value>
+    </property>
+    <property>
+        <name>yarn.nodemanager.log.retain-seconds</name>
+        <value>172800</value>
+        <description>Log retention time</description>
+    </property>
+</configuration>

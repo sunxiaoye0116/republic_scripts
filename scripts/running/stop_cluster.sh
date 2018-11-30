@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+TOR_CONTROLLER_IP=[RESEARCH_NETWORK_PREFIX].152
+OCS_CONTROLLER_IP=[RESEARCH_NETWORK_PREFIX].152
+REPUBLIC_MANAGER_IP=[RESEARCH_NETWORK_PREFIX].152
+
+YARN_RESOURCE_MANAGER_IP=$2
+
+CLUSTER_NODE_LIST=../parallel_hosts/
+CLUSTER_NODE_FILE=$1
+
+USERNAME=[SERVER_USERNAME]
+USER_DIRECTORY=/home/${USERNAME}/
+WORK_DIRECTORY=${USER_DIRECTORY}/github/
+HADOOP_PATH=${WORK_DIRECTORY}./hadoop-2.7.4/
+
+# stop TOR controller
+ssh [SERVER_USERNAME]@${TOR_CONTROLLER_IP} "pkill -9 ryu-manager"
+
+# stop OCS controller
+ssh [SERVER_USERNAME]@${OCS_CONTROLLER_IP} "pkill -9 python" 
+
+# stop Republic Manager
+ssh [SERVER_USERNAME]@${REPUBLIC_MANAGER_IP} "pkill -9 java" 
+
+# stop Republic Agents
+parallel-nuke -h ${CLUSTER_NODE_LIST}${CLUSTER_NODE_FILE} -l [ROOT_USERNAME] protocol
+
+# stop yarn
+ssh [ROOT_USERNAME]@${YARN_RESOURCE_MANAGER_IP} "stop-yarn.sh"
+
+# stop HDFS
+ssh [ROOT_USERNAME]@${YARN_RESOURCE_MANAGER_IP} "stop-dfs.sh"
+parallel-ssh -h ${CLUSTER_NODE_LIST}${CLUSTER_NODE_FILE} -l [ROOT_USERNAME] -i "rm -rf ${HADOOP_PATH}/dfs";
+
+parallel-scp -h ${CLUSTER_NODE_LIST}${CLUSTER_NODE_FILE} -l [ROOT_USERNAME] ../config_files/hosts_20 /etc/hosts

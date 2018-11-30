@@ -1,0 +1,23 @@
+# ~/.profile: executed by Bourne-compatible login shells.
+
+if [ "$BASH" ]; then
+  if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+  fi
+fi
+
+mesg n
+
+export JAVA_HOME=/home/[SERVER_USERNAME]/jdk1.8.0_111
+export SCALA_HOME=/home/[SERVER_USERNAME]/scala-2.10.5
+export MAVEN_HOME=/home/[SERVER_USERNAME]/apache-maven-3.3.3
+export SBT_HOME=/home/[SERVER_USERNAME]/sbt
+export PATH=$JAVA_HOME/bin:$SCALA_HOME/bin:$MAVEN_HOME/bin:$SBT_HOME/bin:$PATH
+export MAVEN_OPTS="-Xmx4g -XX:MaxPermSize=1g -XX:ReservedCodeCacheSize=1g"
+
+# add for Tez
+#export COMPRESS_GLOBAL=0
+#export TEZ_CONF_DIR=/[ROOT_USERNAME]/defaulttez/conf
+#export TEZ_JARS=/[ROOT_USERNAME]/defaulttez
+#export HADOOP_CLASSPATH=`hadoop classpath`:`yarn classpath`:${TEZ_CONF_DIR}:${TEZ_JARS}/*:${TEZ_JARS}/lib/*
+#export CLASSPATH=$HADOOP_CLASSPATH:$CLASSPATH
