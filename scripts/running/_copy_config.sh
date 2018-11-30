@@ -10,17 +10,17 @@ CLUSTER_NODE_FILE=$1
 GITHUB_BRANCH_VERSION="master"
 
 # prepare Republic Agents
-parallel-ssh -h ${CLUSTER_NODE_LIST}${CLUSTER_NODE_FILE} -l [SERVER_USERNAME] -i "cd /home/[SERVER_USERNAME]/github/republic_agent/protocol/transceiver/;git reset --hard;git pull \"https://sunxiaoye0116@github.com/sunxiaoye0116/republic_agent.git\" ${GITHUB_BRANCH_VERSION}; make clean; make"
+parallel-ssh -h ${CLUSTER_NODE_LIST}${CLUSTER_NODE_FILE} -l [SERVER_USERNAME] -i "cd /home/[SERVER_USERNAME]/github/republic_agent/protocol/transceiver/;git reset --hard;git pull \"https://github.com/sunxiaoye0116/republic_agent.git\" ${GITHUB_BRANCH_VERSION}; make clean; make"
 
 # prepare Republic Manager
-ssh [SERVER_USERNAME]@${TOR_CONTROLLER_IP} "cd /home/[SERVER_USERNAME]/github/republic_manager/;git reset --hard;git pull \"https://sunxiaoye0116@github.com/sunxiaoye0116/republic_manager.git\" ${GITHUB_BRANCH_VERSION};"
-ssh [SERVER_USERNAME]@${OCS_CONTROLLER_IP} "cd /home/[SERVER_USERNAME]/github/republic_manager/;git reset --hard;git pull \"https://sunxiaoye0116@github.com/sunxiaoye0116/republic_manager.git\" ${GITHUB_BRANCH_VERSION};"
-ssh [SERVER_USERNAME]@${REPUBLIC_MANAGER_IP} "cd /home/[SERVER_USERNAME]/github/republic_manager/;git reset --hard;git pull \"https://sunxiaoye0116@github.com/sunxiaoye0116/republic_manager.git\" ${GITHUB_BRANCH_VERSION}"
+ssh [SERVER_USERNAME]@${TOR_CONTROLLER_IP} "cd /home/[SERVER_USERNAME]/github/republic_manager/;git reset --hard;git pull \"https://github.com/sunxiaoye0116/republic_manager.git\" ${GITHUB_BRANCH_VERSION};"
+ssh [SERVER_USERNAME]@${OCS_CONTROLLER_IP} "cd /home/[SERVER_USERNAME]/github/republic_manager/;git reset --hard;git pull \"https://github.com/sunxiaoye0116/republic_manager.git\" ${GITHUB_BRANCH_VERSION};"
+ssh [SERVER_USERNAME]@${REPUBLIC_MANAGER_IP} "cd /home/[SERVER_USERNAME]/github/republic_manager/;git reset --hard;git pull \"https://github.com/sunxiaoye0116/republic_manager.git\" ${GITHUB_BRANCH_VERSION}"
 #;mvn clean;mvn package"
 
 # prepare Spark
 echo prepare Spark
-parallel-ssh -h ${CLUSTER_NODE_LIST}${CLUSTER_NODE_FILE} -l [SERVER_USERNAME] -i "cd /home/[SERVER_USERNAME]/github/spark_private/;git reset --hard;git pull \"https://sunxiaoye0116@github.com/sunxiaoye0116/spark_private.git\" v1.6.1_dev-republic"
+parallel-ssh -h ${CLUSTER_NODE_LIST}${CLUSTER_NODE_FILE} -l [SERVER_USERNAME] -i "cd /home/[SERVER_USERNAME]/github/spark_private/;git reset --hard;git pull \"https://github.com/sunxiaoye0116/spark_private.git\" v1.6.1_dev-republic"
 
 # copy netmap config
 echo netmap config

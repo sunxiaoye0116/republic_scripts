@@ -76,7 +76,7 @@ parallel-scp -h ${CLUSTER_NODE_LIST}${CLUSTER_NODE_FILE} -l ${USERNAME} -r ../ha
 parallel-scp -h ${CLUSTER_NODE_LIST}${CLUSTER_NODE_FILE} -l ${USERNAME} -r ../hadoop_config/sbin/ ${HADOOP_PATH}/
 
 # spark
-parallel-ssh -t 0 -h ${CLUSTER_NODE_LIST}${CLUSTER_NODE_FILE} -l ${USERNAME} -i "source ${PROFILE_FILE}; cd ${WORK_DIRECTORY}; git clone \"https://sunxiaoye0116@github.com/sunxiaoye0116/spark_private.git\"; cd ${SPARK_PATH}; git checkout -b ${SPARK_BRANCH_VERSION} --track origin/${SPARK_BRANCH_VERSION}"
+parallel-ssh -t 0 -h ${CLUSTER_NODE_LIST}${CLUSTER_NODE_FILE} -l ${USERNAME} -i "source ${PROFILE_FILE}; cd ${WORK_DIRECTORY}; git clone \"https://github.com/sunxiaoye0116/spark_private.git\"; cd ${SPARK_PATH}; git checkout -b ${SPARK_BRANCH_VERSION} --track origin/${SPARK_BRANCH_VERSION}"
 # compile spark
 sleep 10
 parallel-ssh -t 0 -h ${CLUSTER_NODE_LIST}${CLUSTER_NODE_FILE} -l ${USERNAME} -i "source ${PROFILE_FILE}; cd ${SPARK_PATH}; build/mvn -T 6 -Pyarn -Phadoop-2.6 -Dhadoop.version=2.7.4 -DskipTests package"
@@ -116,7 +116,7 @@ parallel-scp -h ${CLUSTER_NODE_LIST}${CLUSTER_NODE_FILE} -l ${USERNAME} ${CONFIG
 
 # Republic Agent
 echo republic agent
-parallel-ssh -t 0 -h ${CLUSTER_NODE_LIST}${CLUSTER_NODE_FILE} -l ${USERNAME} -i "source ${PROFILE_FILE}; cd ${WORK_DIRECTORY}; git clone \"https://sunxiaoye0116@github.com/sunxiaoye0116/republic_agent.git\"; cd ${REPUBLIC_AGENT_PATH}; git checkout -b ${REPUBLIC_AGENT_BRANCH_VERSION} --track origin/${REPUBLIC_AGENT_BRANCH_VERSION}; cd ${REPUBLIC_AGENT_C_PATH}; make clean; make"
+parallel-ssh -t 0 -h ${CLUSTER_NODE_LIST}${CLUSTER_NODE_FILE} -l ${USERNAME} -i "source ${PROFILE_FILE}; cd ${WORK_DIRECTORY}; git clone \"https://github.com/sunxiaoye0116/republic_agent.git\"; cd ${REPUBLIC_AGENT_PATH}; git checkout -b ${REPUBLIC_AGENT_BRANCH_VERSION} --track origin/${REPUBLIC_AGENT_BRANCH_VERSION}; cd ${REPUBLIC_AGENT_C_PATH}; make clean; make"
 sleep 10
 # copy zlog.conf
 parallel-scp -h ${CLUSTER_NODE_LIST}${CLUSTER_NODE_FILE} -l ${USERNAME} ${CONFIG_FILE_PATH}./zlog_default.conf ${REPUBLIC_AGENT_C_PATH}
@@ -127,7 +127,7 @@ parallel-scp -h ${CLUSTER_NODE_LIST}${CLUSTER_NODE_FILE} -l ${USERNAME} ${CONFIG
 #ssh ${USERNAME}@${REPUBLIC_MANAGER_IP}  "cp ${PROFILE_FILE} ${PROFILE_FILE}_${USERNAME}_${DATETIME}"
 #scp ${CONFIG_FILE_PATH}./.profile_user [SERVER_USERNAME]@${REPUBLIC_MANAGER_IP}:~/${PROFILE_FILE}
 #ssh ${USERNAME}@${REPUBLIC_MANAGER_IP} "source ${PROFILE_FILE} && cd ${WORK_DIRECTORY} && rm -rf *"
-#ssh ${USERNAME}@${REPUBLIC_MANAGER_IP} "source ${PROFILE_FILE}; cd ${WORK_DIRECTORY}; git clone \"https://sunxiaoye0116@github.com/sunxiaoye0116/republic_manager.git\"; cd ${REPUBLIC_MANAGER_PATH}; git checkout -b ${REPUBLIC_MANAGER_BRANCH_VERSION} --track origin/${REPUBLIC_MANAGER_BRANCH_VERSION}; mvn package"
+#ssh ${USERNAME}@${REPUBLIC_MANAGER_IP} "source ${PROFILE_FILE}; cd ${WORK_DIRECTORY}; git clone \"https://github.com/sunxiaoye0116/republic_manager.git\"; cd ${REPUBLIC_MANAGER_PATH}; git checkout -b ${REPUBLIC_MANAGER_BRANCH_VERSION} --track origin/${REPUBLIC_MANAGER_BRANCH_VERSION}; mvn package"
 
 scp ../config_files/hosts_50 [ROOT_USERNAME]@${REPUBLIC_MANAGER_IP}/etc/hosts
 
